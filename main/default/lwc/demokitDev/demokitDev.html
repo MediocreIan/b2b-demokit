@@ -1,0 +1,21 @@
+<template>
+
+ 
+    <div id="player" class="tkplayer" lwc:dom="manual" style="height: 500px"></div>
+    <template for:each={displayAttributes} for:item="attr">
+        <!-- loop through display attributes begins -->
+        <!-- <p key={attr.id}>{attr.name}</p> -->
+        <label key={attr.id} for={attr.name}>{attr.name}</label>
+        <select onchange={handleClick} key={attr.name} id={attr.name} data-attr={attr.name}>
+            <template for:each={attr.values} for:item="val">
+                <!-- loop through attribute options begins -->
+                    <option key={val.id} id={attr.name} value={val.assetId} >{val.name}</option>
+                
+            </template>
+            <!-- options loop ends -->
+    </select>
+            
+        </template>
+        <!-- attribute loop ends -->
+
+</template> 
