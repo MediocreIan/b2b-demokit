@@ -1,21 +1,53 @@
 <template>
+  <template if:true={loaded}>
 
- 
+
     <div id="player" class="tkplayer" lwc:dom="manual" style="height: 500px"></div>
+    <button onclick={handleAr} display={loaded} class="slds-button slds-button_neutral">View In Your Space</button>
+    <button onclick={handleAddToCart} id='add-to-cart' class="slds-button slds-button_neutral">Details</button>
     <template for:each={displayAttributes} for:item="attr">
-        <!-- loop through display attributes begins -->
-        <!-- <p key={attr.id}>{attr.name}</p> -->
-        <label key={attr.id} for={attr.name}>{attr.name}</label>
-        <select onchange={handleClick} key={attr.name} id={attr.name} data-attr={attr.name}>
-            <template for:each={attr.values} for:item="val">
+      <!-- loop through display attributes begins -->
+      <!-- <p key={attr.id}>{attr.name}</p> -->
+      <div class="slds-form-element" key={attr}>
+        <label key={attr.id} for={attr.name} class="slds-form-element__label">{attr.name}</label>
+        <div class="slds-form-element__control" key={attr}>
+          <div class="slds-select_container" key={attr}>
+            <select class="slds-select" onchange={handleClick} key={attr.name} id={attr.name} data-attr={attr.name}>
+              <template for:each={attr.values} for:item="val">
                 <!-- loop through attribute options begins -->
-                    <option key={val.id} id={attr.name} value={val.assetId} >{val.name}</option>
-                
-            </template>
-            <!-- options loop ends -->
-    </select>
-            
-        </template>
-        <!-- attribute loop ends -->
+                <option key={val.id} id={attr.name} value={val.assetId}>{val.name}</option>
 
-</template> 
+              </template>
+            </select>
+            <!-- options loop ends -->
+          </div>
+        </div>
+      </div>
+    </template>
+    <!-- attribute loop ends -->
+    <template if:true={modalOpen}>
+      <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
+        aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+        <div class="slds-modal__container">
+          <header class="slds-modal__header">
+            <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={handleCloseModal}>
+              <svg class="slds-button__icon slds-button__icon_large" aria-hidden="true" >
+                <use xlink:href="/_slds/icons/utility-sprite/svg/symbols.svg#close"></use>
+              </svg>
+              <span class="slds-assistive-text">Close</span>
+            </button>
+            <h2 id="modal-heading-01" class="slds-modal__title slds-hyphenate">View In Your Space</h2>
+            <p class="slds-m-top_x-small">scan with a mobile device to view in your space
+            </p>
+          </header>
+          <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+            <center>
+            <iframe width="330px" height="330px" src={url} border='none'></iframe>
+          </center>
+          </div>
+        </div>
+      </section>
+      <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+  </template>
+</template>

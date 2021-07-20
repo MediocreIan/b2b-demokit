@@ -1,6 +1,8 @@
 import { LightningElement, wire, track, api } from 'lwc'
 import { loadScript } from 'lightning/platformResourceLoader'
 import threekit from '@salesforce/resourceUrl/playerbundle'
+import { ShowToastEvent } from 'lightning/platformShowToastEvent'
+
 // import threekit from '@salesforce/resourceUrl/bundle630'
 
 // this is the right bundle - playerbundle

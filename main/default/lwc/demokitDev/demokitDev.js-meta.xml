@@ -14,12 +14,11 @@
   </targets>
   <targetConfigs>
     <targetConfig targets="lightningCommunity__Default">
-        <property
-            name="recordId"
-            type="String"
-            label="Record Id"
-            description="Automatically bind the page's record id to the component variable"
-            default="{!recordId}" />
+      <property name="recordId"
+        type="String"
+        label="Record ID"
+        description="The value should be {!recordId}."
+          />
     </targetConfig>
-</targetConfigs>
+  </targetConfigs>
 </LightningComponentBundle>
